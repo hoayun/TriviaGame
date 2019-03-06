@@ -71,17 +71,22 @@ $(document).ready(function(){
     function timeit(){
         counter--;
         $("#timeleft").text("Time left: " + counter);
-    };
-     
-           
-            
-            
         if (counter == 0){
             $("#correctorincorrect").text("TIME UP!!");
             $("#correctanswer").text(" The right answer was " + pages[page].correctanswer);
             $("#timeleft").hide();
             setTimeout(turnpage, 5000);
+            function stop() {
+                clearInterval(timer);
+              }
+              stop();
          };
+
+    };
+     
+           
+            
+      
 
 
         
@@ -138,7 +143,13 @@ $(document).ready(function(){
         $("#correctanswer").text("")
         $("button").detach()
         $("#question").text("")
-        
+        if(page === 5){
+            return;
+
+
+
+
+        };
        
         start();
 
