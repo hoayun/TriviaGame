@@ -6,77 +6,143 @@
 // use .html("") for clearing between pages
 
 
- var page1 = {
+ var pages = [ {
             question:"Whats 10 X 10?",
             answer:["100", "1000", "10000", "10"],
             correctanswer:"100"
-};
-var page2 = {
+        },
+        {
             question:"Whats 36 X 36?",
             answer:["1296", "1166", "1290", "1100"],
             correctanswer:"1296"
-};
-
+        },
+        {
+        question:"Whats 10 X 10?",
+            answer:["100", "1000", "10000", "10"],
+            correctanswer:"100"
+        },
+        {
+        question:"Whats 10 X 10?",
+        answer:["100", "1000", "10000", "10"],
+        correctanswer:"100"
+        },
+        {
+            question:"Whats 10 X 10?",
+            answer:["100", "1000", "10000", "10"],
+            correctanswer:"100"
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ];
+var page = 0;
 $(document).ready(function(){
+  
+   
+    
 
     $(".start").click(function(){
     start();
     });
-    
+    console.log(pages[page].question);
 
     function start(){
+        function stop() {
+            clearInterval(timer);
+          }
+          stop();
+          $("#timeleft").text("Time left: 20");
         //removes start button
         $(".start").hide();
+        $("#timeleft").show();
         
         var counter = 21;
-        setInterval(timeit, 1000);
-        function timeit(){
-            counter--;
-            $("#timeleft").text("Time left: " + counter);
+        var timer = setInterval(timeit, 1000);
+    function timeit(){
+        counter--;
+        $("#timeleft").text("Time left: " + counter);
+    };
+     
+           
             
             
         if (counter == 0){
             $("#correctorincorrect").text("TIME UP!!");
-            $("#correctanswer").text(" The right answer was " + page1.correctanswer);
+            $("#correctanswer").text(" The right answer was " + pages[page].correctanswer);
             $("#timeleft").hide();
+            setTimeout(turnpage, 5000);
          };
 
 
-        }
+        
         // Displays Question
-        $("#question").text(page1.question);
+        $("#question").text(pages[page].question);
         // Displays Possible Answers
-        for (i = 0; i < page1.answer.length; i++){
+        for (i = 0; i < pages[page].answer.length; i++){
             answer = $("<button>");
             
-            answer.text(page1.answer[i]);
-            answer.attr({"answeroutput":page1.answer[i]});
+            answer.text(pages[page].answer[i]);
+            answer.attr({"answeroutput":pages[page].answer[i]});
             $(".answer"+[i + 1]).append(answer);}
 
         // On click for Answers
         $("button").click(function(){
+            function stop() {
+                clearInterval(timer);
+              }
+              stop();
+
+
+
          var chosen = ($(this).attr("answeroutput"));
-         if (chosen === page1.correctanswer) {
+         if (chosen === pages[page].correctanswer) {
              console.log("win")
              $("#correctorincorrect").text("CORRECT!!!");
-             $("#correctanswer").text(" The right answer was " + page1.correctanswer);
+             $("#correctanswer").text(" The right answer was " + pages[page].correctanswer);
              $("#timeleft").hide();
+           
+             setTimeout(turnpage, 5000);
              // ++ correctanswers here
          }
          
          else {
             $("#correctorincorrect").text("INCORRECT!!!");
-            $("#correctanswer").text(" The right answer was " + page1.correctanswer);
+            $("#correctanswer").text(" The right answer was " + pages[page].correctanswer);
             $("#timeleft").hide();
+            setTimeout(turnpage, 5000);
+           
          }
-         
+        
         })
+    }
         
         
 
 
 
 
-    };
+    
+    function turnpage(){
+        page++;
+        $("#correctorincorrect").text("");
+        $("#correctanswer").text("")
+        $("button").detach()
+        $("#question").text("")
+        
+       
+        start();
+
+
+    }
 });
 //page = 0 on next page display "page" + page
