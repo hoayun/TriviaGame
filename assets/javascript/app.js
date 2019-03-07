@@ -17,24 +17,46 @@
             correctanswer:"1296"
         },
         {
-        question:"Whats 10 X 10?",
-            answer:["100", "1000", "10000", "10"],
-            correctanswer:"100"
+        question:"The sum of the measures in degrees of the angles of a triangle is?",
+            answer:["720", "360", "180", "120"],
+            correctanswer:"180"
         },
         {
-        question:"Whats 10 X 10?",
-        answer:["100", "1000", "10000", "10"],
+        question:"The number of degrees of arc in a circle is?",
+        answer:["100", "180", "360", "400"],
+        correctanswer:"360"
+        },
+        {
+            question:"Is -84 + 5 positive or negative?",
+            answer:["positive", "negative", "both", "neither"],
+            correctanswer:"negative"
+        },
+        {
+        question:"Express 71/1000 as a decimal?",
+        answer:[".71", ".071", ".0071", "7.1"],
+        correctanswer:".0071"
+        },
+        {
+        question:"8 is what percent of 40?",
+        answer:["10", "15", "20", "25"],
+        correctanswer:"20"
+        },    
+        {
+        question:"Consider the following series: 6, 12, 24, 48. What number should come next?",
+        answer:["52", "64", "88", "96"],
+        correctanswer:"96"
+        },
+        {
+        question:"3 +(35 – 21) x 2?",
+        answer:["31", "36", "42", "184"],
+        correctanswer:"31"
+        },
+        {
+        question:"What percent chance is it, that today is John's favorite day of the boot camp?",
+        answer:["100", "30", "40", "75"],
         correctanswer:"100"
         },
-        {
-            question:"Whats 10 X 10?",
-            answer:["100", "1000", "10000", "10"],
-            correctanswer:"100"
-        }
-    
-    
-    
-    
+
     
     
     
@@ -76,7 +98,7 @@ $(document).ready(function(){
             $("#correctorincorrect").text("TIME UP!!");
             $("#correctanswer").text(" The right answer was " + pages[page].correctanswer);
             $("#timeleft").hide();
-            setTimeout(turnpage, 5000);
+            setTimeout(turnpage, 3000);
             function stop() {
                 clearInterval(timer);
               }
@@ -118,7 +140,7 @@ $(document).ready(function(){
              $("#timeleft").hide();
              correctpoint++
            
-             setTimeout(turnpage, 5000);
+             setTimeout(turnpage, 3000);
              // ++ correctanswers here
          }
          
@@ -126,7 +148,7 @@ $(document).ready(function(){
             $("#correctorincorrect").text("INCORRECT!!!");
             $("#correctanswer").text(" The right answer was " + pages[page].correctanswer);
             $("#timeleft").hide();
-            setTimeout(turnpage, 5000);
+            setTimeout(turnpage, 3000);
            
          }
         
@@ -145,13 +167,14 @@ $(document).ready(function(){
         $("#correctanswer").text("")
         $("button").detach()
         $("#question").text("")
-        if(page === 5){
+        if(page === 10){
             $("#question").text("You got "+ correctpoint +" out of 10 questions correct!!");
             reset = $("<button>");
             reset.text(" Try Again ");
             $("#reset").append(reset);
             $("#reset").click(function(){
                 page = 0;
+                correctpoint = 0;
                 start();
                 });
 
