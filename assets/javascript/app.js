@@ -45,6 +45,7 @@
     
     
     ];
+var correctpoint = 0;
 var page = 0;
 $(document).ready(function(){
   
@@ -115,6 +116,7 @@ $(document).ready(function(){
              $("#correctorincorrect").text("CORRECT!!!");
              $("#correctanswer").text(" The right answer was " + pages[page].correctanswer);
              $("#timeleft").hide();
+             correctpoint++
            
              setTimeout(turnpage, 5000);
              // ++ correctanswers here
@@ -144,12 +146,21 @@ $(document).ready(function(){
         $("button").detach()
         $("#question").text("")
         if(page === 5){
-            return;
+            $("#question").text("You got "+ correctpoint +" out of 10 questions correct!!");
+            reset = $("<button>");
+            reset.text(" Try Again ");
+            $("#reset").append(reset);
+            $("#reset").click(function(){
+                page = 0;
+                start();
+                });
+
+            return;}
 
 
 
 
-        };
+     
        
         start();
 
